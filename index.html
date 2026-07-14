@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arif R. | Product Designer</title>
+<meta name="description" content="Product designer based in Semarang, Indonesia. Six years of experience designing user-friendly interfaces for web and mobile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+
+  <header class="site-header" data-header></header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero wrap">
+      <div id="statusIndicator" class="status-indicator">
+        <span class="led"></span>
+        <span id="statusLabel">Loading…</span>
+      </div>
+
+      <div class="hero-grid">
+        <h1 id="heroHeading">&nbsp;</h1>
+        <div class="hero-meta">
+          <span class="mono-label">Profile</span>
+          <p class="hero-bio" id="heroBio"></p>
+          <div class="hero-actions" id="heroActions"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="scale" data-label="Selected Work"></div>
+
+    <!-- Highlighted Projects -->
+    <section class="section wrap">
+      <div class="section-head">
+        <div>
+          <span class="mono-label mono-label--signal">01 — Projects</span>
+          <h2>Highlighted Projects</h2>
+        </div>
+      </div>
+      <p class="section-intro" id="projectsIntro" style="margin-bottom: 40px;"></p>
+      <div class="project-grid" id="projectGrid"></div>
+      <div class="view-more-row">
+        <a class="btn btn-secondary" href="projects.html">View All Projects</a>
+      </div>
+    </section>
+
+    <div class="scale" data-label="Experience"></div>
+
+    <!-- Experience -->
+    <section class="section wrap" id="experience">
+      <div class="section-head">
+        <div>
+          <span class="mono-label mono-label--signal">02 — Works</span>
+          <h2>Experience</h2>
+        </div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <!-- Fallback copy of data/content.json, used only when the page is opened
+       directly as a file (file://) and fetch() is blocked by the browser.
+       When served over http(s) (GitHub Pages, Netlify, a local server),
+       data/content.json is used instead — that's the file to edit. -->
+  <script type="application/json" id="content-fallback">
+{
+  "site": {
+    "name": "Arif R.",
+    "role": "Product Designer",
+    "location": "Semarang, Indonesia",
+    "email": "arifrhkim@gmail.com",
+    "resumeUrl": "https://drive.google.com/file/d/1k8r3CW6LZKCOeR8W005l0JmoShiiTNb2/view?usp=sharing",
+    "year": "2026",
+    "social": [
+      { "label": "LinkedIn", "url": "https://linkedin.com/in/arifrhkim" },
+      { "label": "Behance", "url": "https://be.net/arifrhkim" },
+      { "label": "Dribbble", "url": "https://dribbble.com/arifrhkim" }
+    ]
+  },
+
+  "hero": {
+    "available": true,
+    "status": "Available for Work",
+    "heading": "Hi, my name is Arif.",
+    "bio": "Based in Semarang, Indonesia. Six years working alongside engineers, product managers, and clients to ship interfaces people can actually use \u2014 with the occasional detour into logos, branding, and illustration.",
+    "primaryCta": { "label": "View Projects", "href": "projects.html" },
+    "secondaryCta": { "label": "Contact Me", "href": "#contact" }
+  },
+
+  "projectsIntro": "Six years of UI/UX work across mobile and web \u2014 from first sketch to shipped screen. A few of the highlights below.",
+
+  "projects": [
+    {
+      "id": "samsat-redesign",
+      "tag": "Case Study \u2014 Government Services",
+      "title": "Redesign: Samsat App",
+      "year": "2023",
+      "description": "A redesign concept for Samsat Online Nasional, the national service for vehicle-tax payment and annual validation, focused on clearing up a confusing payment flow.",
+      "role": "Product Designer",
+      "href": "#"
+    },
+    {
+      "id": "audiobook-ui-kit",
+      "tag": "UI Kit \u2014 Mobile",
+      "title": "Audio Book Mobile App UI Kit",
+      "year": "2022",
+      "description": "A 60+ screen UI kit for an audiobook app, built entirely on Figma variables, styles, and variants, with full light and dark theme coverage.",
+      "role": "UI Designer",
+      "href": "#"
+    },
+    {
+      "id": "fitnow-website",
+      "tag": "Case Study \u2014 Web",
+      "title": "FitNow Website Design",
+      "year": "2022",
+      "description": "A marketing site for FitNow, built to walk visitors from service overview to a tailored fitness plan without friction.",
+      "role": "Product Designer",
+      "href": "#"
+    },
+    {
+      "id": "pelindo-app",
+      "tag": "Case Study \u2014 Enterprise",
+      "title": "Employee Services App",
+      "year": "2019",
+      "description": "An integrated internal app for a state-owned port operator, covering attendance, forums, surveys, and agenda management for office staff.",
+      "role": "UI/UX Developer",
+      "href": "#"
+    }
+  ],
+
+  "experience": [
+    {
+      "years": "2024\u2014Present",
+      "company": "Alpheya",
+      "role": "Interaction / Product Designer",
+      "description": "Working across the full product lifecycle, from early concepts to high-fidelity prototypes, ensuring each solution serves both user needs and business goals. Also contributing to the design system that keeps teams consistent and efficient."
+    },
+    {
+      "years": "2019\u20142024",
+      "company": "AccelByte",
+      "role": "UI/UX Designer",
+      "description": "Designed interfaces against client goals, partnered with product management on project scope, and improved existing products for usability, aesthetics, and function."
+    },
+    {
+      "years": "2017\u20142019",
+      "company": "Pelabuhan Indonesia III",
+      "role": "UI/UX Developer",
+      "description": "Took designs from research through prototyping into working static interfaces for web and React Native, and handled launch branding \u2014 store assets, presentations, and promotional material."
+    }
+  ],
+
+  "cta": {
+    "heading": "Looking for a design partner?",
+    "sub": "Let\u2019s collaborate.",
+    "buttonLabel": "Contact Me"
+  },
+
+  "footer": {
+    "copyright": "Copyright of Arif Rahman"
+  }
+}
+
+  </script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    (async () => {
+      const { loadContent, renderHeader, renderFooter, projectCardHTML } = window.ArifSite;
+      const data = await loadContent();
+      const { site, hero, projects, experience } = data;
+
+      renderHeader(site);
+      renderFooter(data);
+
+      document.title = `${site.name} | ${site.role}`;
+
+      const statusIndicator = document.getElementById('statusIndicator');
+      const statusLabel = document.getElementById('statusLabel');
+      statusLabel.textContent = hero.status;
+      if (hero.available) statusIndicator.classList.add('is-available');
+
+      document.getElementById('heroHeading').textContent = hero.heading;
+      document.getElementById('heroBio').textContent = hero.bio;
+
+      document.getElementById('heroActions').innerHTML = `
+        <a class="btn btn-primary" href="${hero.primaryCta.href}">${hero.primaryCta.label} ${window.ArifSite.arrowSVG()}</a>
+        <a class="btn btn-secondary" href="${hero.secondaryCta.href}">${hero.secondaryCta.label}</a>
+      `;
+
+      document.getElementById('projectsIntro').textContent = data.projectsIntro;
+
+      const grid = document.getElementById('projectGrid');
+      grid.innerHTML = projects.slice(0, 4).map(projectCardHTML).join('');
+
+      const timeline = document.getElementById('timeline');
+      timeline.innerHTML = experience
+        .map(
+          (e) => `
+        <div class="timeline-row">
+          <div class="timeline-years">${e.years}</div>
+          <div class="timeline-tick"></div>
+          <div class="timeline-body">
+            <h3>${e.company}</h3>
+            <span class="timeline-role">${e.role}</span>
+            <p class="desc">${e.description}</p>
+          </div>
+        </div>`
+        )
+        .join('');
+    })();
+  </script>
+</body>
+</html>

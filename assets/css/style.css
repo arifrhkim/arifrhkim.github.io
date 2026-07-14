@@ -1,0 +1,615 @@
+/* =================================================================
+   Arif R. — Portfolio
+   Design language: Dieter Rams / Braun industrial design.
+   "Weniger, aber besser" — less, but better.
+   No shadows, no gradients, no radius bigger than 2px.
+   One functional signal color. Everything else is structure.
+   ================================================================= */
+
+:root {
+  /* ---- Color: Braun-casing neutrals + one signal color ---- */
+  --bg:          #ECEBE6;
+  --bg-panel:    #F7F6F3;
+  --bg-panel-2:  #E2E0D9;
+  --ink:         #1B1B18;
+  --ink-mute:    #6F6E68;
+  --ink-faint:   #9B9A93;
+  --line:        #CBC9C0;
+  --line-strong: #1B1B18;
+  --signal:      #C63B23;
+  --signal-dim:  rgba(198, 59, 35, 0.12);
+
+  /* ---- Type ---- */
+  --f-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --f-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  /* ---- Scale ---- */
+  --unit: 8px;
+  --radius: 2px;
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+}
+
+/* ---- Utility text styles ---- */
+.mono-label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.mono-label--signal { color: var(--signal); }
+
+h1, h2, h3 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+/* =================================================================
+   Header / Nav
+   ================================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--signal);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav a {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--signal);
+  transition: width 0.2s ease;
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after { width: 100%; }
+
+.nav .nav-cta {
+  border: 1px solid var(--ink);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+}
+
+.nav .nav-cta::after { display: none; }
+.nav .nav-cta:hover {
+  background: var(--ink);
+  color: var(--bg-panel);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 780px) {
+  .nav-toggle { display: flex; }
+  .nav {
+    position: absolute;
+    top: 72px;
+    left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 20px 20px;
+    display: none;
+  }
+  .nav.is-open { display: flex; }
+  .nav a { width: 100%; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .nav .nav-cta { border: none; margin-top: 8px; padding: 14px 0; }
+}
+
+/* =================================================================
+   Ruler / scale divider — signature element
+   A horizontal measuring scale, styled after a Braun control-panel
+   dial. Used between every major section instead of blank space.
+   ================================================================= */
+
+.scale {
+  --n: 24;
+  height: 28px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    repeating-linear-gradient(
+      to right,
+      var(--line) 0,
+      var(--line) 1px,
+      transparent 1px,
+      transparent calc(100% / var(--n))
+    );
+  position: relative;
+}
+
+.scale::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: var(--bg);
+  padding-left: 8px;
+}
+
+/* =================================================================
+   Hero
+   ================================================================= */
+
+.hero {
+  padding: 56px 0 64px;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  margin-bottom: 32px;
+}
+
+.status-indicator .led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.status-indicator.is-available .led {
+  background: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-dim);
+}
+
+.status-indicator span {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: end;
+}
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.02;
+}
+
+.hero-meta {
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+}
+
+.hero-meta .mono-label { margin-bottom: 10px; display: block; }
+
+.hero-bio {
+  color: var(--ink-mute);
+  font-size: 17px;
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg-panel);
+}
+
+.btn-primary:hover { background: var(--signal); border-color: var(--signal); }
+
+.btn-secondary { background: transparent; color: var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: var(--bg-panel); }
+
+.btn .arrow { transition: transform 0.15s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* =================================================================
+   Section headings
+   ================================================================= */
+
+.section {
+  padding: 64px 0;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 3.5vw, 40px);
+}
+
+.section-head .mono-label { display: block; margin-bottom: 12px; }
+
+.section-intro {
+  color: var(--ink-mute);
+  max-width: 56ch;
+}
+
+/* =================================================================
+   Project grid
+   ================================================================= */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 780px) {
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+.project-card {
+  background: var(--bg-panel);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: background 0.15s ease;
+}
+
+.project-card:hover { background: var(--bg-panel-2); }
+
+.project-thumb {
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-thumb svg { width: 100%; height: 100%; }
+
+.project-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.project-card h3 {
+  font-size: 22px;
+}
+
+.project-year {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.project-card p.desc {
+  color: var(--ink-mute);
+  font-size: 15px;
+}
+
+.project-card .view-link {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.project-card .view-link .arrow { transition: transform 0.15s ease; }
+.project-card:hover .view-link .arrow { transform: translateX(3px); }
+.project-card:hover .view-link { color: var(--signal); }
+
+.projects-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.view-more-row {
+  margin-top: 32px;
+  text-align: center;
+}
+
+/* =================================================================
+   Experience timeline
+   ================================================================= */
+
+.timeline {
+  border-top: 1px solid var(--line);
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 160px 24px 1fr;
+  gap: 0 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .timeline-row { grid-template-columns: 20px 1fr; }
+  .timeline-row .timeline-years { grid-column: 1 / -1; order: -1; margin-bottom: 8px; }
+}
+
+.timeline-years {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--ink-mute);
+  padding-top: 4px;
+}
+
+.timeline-tick {
+  position: relative;
+}
+
+.timeline-tick::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  transform: translateX(-50%);
+}
+
+.timeline-body h3 {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+.timeline-role {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.timeline-body p.desc {
+  color: var(--ink-mute);
+  max-width: 62ch;
+}
+
+/* =================================================================
+   CTA
+   ================================================================= */
+
+.cta {
+  padding: 72px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cta h2 {
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.cta .mono-label { display: block; margin-bottom: 16px; }
+
+.cta .btn { margin-top: 32px; }
+
+/* =================================================================
+   Footer
+   ================================================================= */
+
+.site-footer { padding: 40px 0 0; }
+
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-social .links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-social a {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-social a:hover { border-color: var(--signal); color: var(--signal); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-bottom .mono-label { text-transform: none; }
+
+.footer-bottom .links { display: flex; gap: 20px; }
+.footer-bottom .links a { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; }
+.footer-bottom .links a:hover { color: var(--signal); }
+
+/* =================================================================
+   Page header (projects.html)
+   ================================================================= */
+
+.page-header {
+  padding: 48px 0 40px;
+}
+
+.page-header h1 {
+  font-size: clamp(36px, 6vw, 56px);
+}
+
+.back-link {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.back-link:hover { color: var(--signal); }
+
+/* =================================================================
+   Reduced motion
+   ================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
